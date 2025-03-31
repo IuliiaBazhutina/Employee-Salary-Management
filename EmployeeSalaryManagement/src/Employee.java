@@ -4,13 +4,17 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String jobTitle;
+    private Unions union;
 
-    public Employee(String firstName, String lastName, String jobTitle) {
+    // constructor
+    public Employee(String firstName, String lastName, String jobTitle, Unions union) {
         setFirstName(firstName);
         setLastName(lastName);
         setJobTitle(jobTitle);
+        this.union = union;
     }
 
+    // getters
     public String getFirstName() {
         return this.firstName;
     }
@@ -23,36 +27,42 @@ public class Employee {
         return this.jobTitle;
     }
 
+    // setters
     public void setFirstName(String fName) {
-        if (!fName.equals("")) {
-            String capitalizedName = fName.substring(0, 1).toUpperCase() + fName.substring(1).toLowerCase();
-            this.firstName = capitalizedName;
-        } else {
-            this.firstName = "unknown";
+        String capitalizedName;
+        try {
+            // attempt to capitalize the first letter and make the rest lowercase
+            capitalizedName = fName.substring(0, 1).toUpperCase() + fName.substring(1).toLowerCase();
+        } catch (Exception e) {
+            // if an exception occurs, set name "Unknown"
+            capitalizedName = "Unknown";
         }
+        // set capitalized name or "Unknown" in case of exception
+        this.firstName = capitalizedName;
     }
 
     public void setLastName(String lName) {
-        if (!lName.equals("")) {
-            String capitalizedName = lName.substring(0, 1).toUpperCase() + lName.substring(1).toLowerCase();
-            this.lastName = capitalizedName;
-        } else {
-            this.lastName = "unknown";
+        String capitalizedName;
+        try {
+            // attempt to capitalize the first letter and make the rest lowercase
+            capitalizedName = lName.substring(0, 1).toUpperCase() + lName.substring(1).toLowerCase();
+        } catch (Exception e) {
+            // if an exception occurs, set name "Unknown"
+            capitalizedName = "Unknown";
         }
+        // set capitalized name or "Unknown" in case of exception
+        this.lastName = capitalizedName;
     }
 
     public void setJobTitle(String jobTitle) {
-        if (!jobTitle.equals("")) {
-            this.jobTitle = jobTitle;
-        } else {
-            this.jobTitle = "unknown";
-        }
+        // set job title or "Unknown" in case of empty String
+        this.jobTitle = (jobTitle.equals("")) ? "Unknown" : jobTitle;
     }
 
+    // toString
     @Override
     public String toString() {
         String message = "" + getFirstName() + " " + getLastName() + " works as " + getJobTitle() + ".";
         return message;
     }
-
 }
