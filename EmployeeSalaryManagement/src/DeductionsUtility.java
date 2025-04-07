@@ -29,9 +29,6 @@ public class DeductionsUtility {
 
     // Union dues
     public static final double UNION_DUES_PSAC = 0.009617; // 0.9617% of a member's salary
-    public static final double UNION_DUES_PIPSC = 90.06; // $90.06 per month
-    public static final double UNION_DUES_CUPE = 0.0085; // 0.85% of a member's salary
-    
     
     // calculate Federal income tax per a month
     public static double calculateIncTaxFed(double grossSalary) {
@@ -92,37 +89,29 @@ public class DeductionsUtility {
 
     
     // calculate Union dues depends on employee's Union
-    public static double calculateUnionDue(Unions union, double grossSalary) {
-        double due;
-        switch(union.toString()){
-            case "PSAC":  due = grossSalary * UNION_DUES_PSAC; 
-                            break;
-            case "PIPSC":  due = UNION_DUES_PIPSC; 
-                            break;
-            case "CUPE":  due = grossSalary * UNION_DUES_CUPE; 
-                            break;
-            default: due = 0;}
+    public static double calculateUnionDue(double grossSalary) {
+        double due = grossSalary * UNION_DUES_PSAC; 
         return due;
     }
 
     
     // calculate total deductions
-    public static double calculateDeductions(Unions union, double grossSalary) {
-        double deductions = calculateIncTaxFed(grossSalary) + calculateIncTaxProv(grossSalary) + calculateEI(grossSalary) + calculateCPP(grossSalary) + calculateUnionDue(union, grossSalary);
+    public static double calculateDeductions(double grossSalary) {
+        double deductions = calculateIncTaxFed(grossSalary) + calculateIncTaxProv(grossSalary) + calculateEI(grossSalary) + calculateCPP(grossSalary) + calculateUnionDue(grossSalary);
         return deductions;
     }
 
     
     // return String with information about every deduction and total
-    public static String displayDeductions(Unions union, double grossSalary) {
+    public static String displayDeductions(double grossSalary) {
         String message = "";
         message += String.format("\n%-25s", "Federal Income tax:  ") + String.format("%10.2f", calculateIncTaxFed(grossSalary));
         message += String.format("\n%-25s", "Provincial Income tax:  ") + String.format("%10.2f", calculateIncTaxProv(grossSalary));
         message += String.format("\n%-25s", "EI premium:  ") + String.format("%10.2f", calculateEI(grossSalary));
         message += String.format("\n%-25s", "CPP contribution:  ") + String.format("%10.2f", calculateCPP(grossSalary));
-        message += String.format("\n%-25s", "Union due:  ") + String.format("%10.2f", calculateUnionDue(union, grossSalary));
+        message += String.format("\n%-25s", "Union due:  ") + String.format("%10.2f", calculateUnionDue(grossSalary));
         message += "\n-----------------------------------";
-        message += String.format("\n%-25s", "Deductions total:  ") + String.format("%10.2f", calculateDeductions(union, grossSalary));
+        message += String.format("\n%-25s", "Deductions total:  ") + String.format("%10.2f", calculateDeductions(grossSalary));
         return message;
     }
 }

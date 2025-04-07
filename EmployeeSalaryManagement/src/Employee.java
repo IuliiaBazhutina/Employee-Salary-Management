@@ -4,14 +4,12 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String jobTitle;
-    private Unions union;
-
+ 
     // constructor
-    public Employee(String firstName, String lastName, String jobTitle, Unions union) {
+    public Employee(String firstName, String lastName, String jobTitle) {
         setFirstName(firstName);
         setLastName(lastName);
         setJobTitle(jobTitle);
-        this.union = union;
     }
 
     // getters
