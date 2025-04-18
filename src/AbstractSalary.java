@@ -1,24 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author danielwang
- */
-public abstract class Salary {
+import java.util.Scanner;
+
+public abstract class AbstractSalary implements Salary {
 
     private Employee employee;
     private double basicSalary;
 
-    // Constructor
-    public Salary(Employee employee, double basicSalary) {
+    public AbstractSalary(Employee employee, double basicSalary) {
         this.employee = employee;
         this.basicSalary = basicSalary;
     }
 
-    // Getters
     public Employee getEmployee() {
         return employee;
     }
@@ -27,7 +19,6 @@ public abstract class Salary {
         return basicSalary;
     }
 
-    // Setters
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
@@ -36,18 +27,23 @@ public abstract class Salary {
         this.basicSalary = basicSalary;
     }
 
-    // Abstract methods
+    @Override
     public abstract double calculateSalary();
+
+    @Override
     public abstract String toString();
 
-    // Private method to calculate deductions from the gross salary
     protected double calculateDeductions(double grossSalary) {
         return DeductionsUtility.calculateDeductions(grossSalary);
     }
 
-    // Optional: display deduction breakdown
     protected String displayDeductions(double grossSalary) {
         return DeductionsUtility.displayDeductions(grossSalary);
     }
-}
 
+    // Optional: shared user input for Employee (if needed)
+    @Override
+    public void userInput(Scanner scan) {
+        // Optionally implement if Employee input is shared across subclasses
+    }
+}
