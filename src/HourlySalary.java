@@ -1,4 +1,8 @@
-public class HourlySalary extends Salary {
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class HourlySalary extends AbstractSalary {
     private double hoursWorked;
     private double hourlyRate;
 
@@ -39,5 +43,20 @@ public class HourlySalary extends Salary {
             "%s\nType: Hourly Salary\nHours Worked: %.2f\nHourly Rate: $%.2f\nSalary: $%.2f" ,
             getEmployee(). toString(), hoursWorked, hourlyRate, calculateSalary()
         );
+    }
+    
+      @Override
+    public void userInput(Scanner scan) {
+        try {
+            System.out.print("Enter hours worked: ");
+            hoursWorked = scan.nextDouble();
+
+            System.out.print("Enter hourly rate: ");
+            hourlyRate = scan.nextDouble();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter numeric values.");
+            scan.nextLine(); // clear the bad input
+            userInput(scan); // retry input
+        }
     }
 }
