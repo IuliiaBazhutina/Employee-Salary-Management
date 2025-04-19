@@ -41,9 +41,6 @@ public abstract class AbstractSalary implements Salary {
         return DeductionsUtility.displayDeductions(grossSalary);
     }
 
-    // Optional: shared user input for Employee (if needed)
     @Override
-    public void userInput(Scanner scan) {
-        // Optionally implement if Employee input is shared across subclasses
-    }
+    public abstract void userInput(Scanner scan);
 }

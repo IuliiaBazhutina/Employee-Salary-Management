@@ -48,7 +48,7 @@ public class HourlySalary extends AbstractSalary {
       @Override
     public void userInput(Scanner scan) {
         try {
-            System.out.print("Enter hours worked: ");
+            System.out.print("Enter hours worked per week: ");
             hoursWorked = scan.nextDouble();
 
             System.out.print("Enter hourly rate: ");

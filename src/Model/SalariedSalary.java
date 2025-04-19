@@ -18,7 +18,7 @@ public class SalariedSalary extends AbstractSalary {
             System.out.print("Enter annual base salary: ");
             annualSalary = scan.nextDouble();
 
-            System.out.print("Enter bonus amount: ");
+            System.out.print("Enter annual bonus amount: ");
             bonus = scan.nextDouble();
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter numeric values.");
