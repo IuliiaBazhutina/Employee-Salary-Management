@@ -40,7 +40,7 @@ public class HourlySalary extends AbstractSalary {
     @Override
     public String toString() {
         return String.format(
-            "%s\nType: Hourly Salary\nHours Worked: %.2f\nHourly Rate: $%.2f\nSalary: $%.2f" ,
+            "%s\nType: Hourly Salary (Weekly Pay)\nHours Worked: %.2f\nHourly Rate: $%.2f\nNet Weekly Salary: $%.2f" ,
             getEmployee(). toString(), hoursWorked, hourlyRate, calculateSalary()
         );
     }
